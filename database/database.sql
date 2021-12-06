@@ -1,0 +1,9 @@
+CREATE DATABASE copacabana_db;
+
+USE copacabana_db;
+
+CREATE TABLE users (
+id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100)
+);
+DESCRIBE users;
