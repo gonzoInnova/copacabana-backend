@@ -5,13 +5,13 @@ import com.copacabana.copacabana.models.User;
 import java.util.List;
 
 public interface UserDao {
-    List<User> getUsers();
+    List<User> getUsers(String type);
 
     void delete(Long id);
 
-    void post(User user);
+    void post(User userPost);
 
-    void put(User user, Long id);
+    void put(User userPut);
 
-    User opteinUser(User user);
+    User getUser(User user);
 }

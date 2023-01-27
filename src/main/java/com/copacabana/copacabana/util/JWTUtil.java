@@ -1,6 +1,8 @@
 package com.copacabana.copacabana.util;
 
 
+import com.copacabana.copacabana.exception.Message;
+import com.copacabana.copacabana.exception.MessageDescription;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -89,9 +91,14 @@ public class JWTUtil {
     public String getKey(String jwt) {
         // This line will throw an exception if it is not a signed JWS (as
         // expected)
-        Claims claims = Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(key))
-                .parseClaimsJws(jwt).getBody();
+        try {
+            Claims claims = Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(key))
+                    .parseClaimsJws(jwt).getBody();
 
-        return claims.getId();
+            return claims.getId();
+        }catch (Exception e ){
+            throw Message.GetUnauthorized(MessageDescription.UserUnauthorized);
+        }
+
     }
 }
